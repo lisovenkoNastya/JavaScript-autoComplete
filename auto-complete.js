@@ -110,7 +110,7 @@ var autoComplete = (function(){
                     that.last_val = that.value;
                     that.sc.style.display = 'none';
                     setTimeout(function(){ that.sc.style.display = 'none'; }, 350); // hide suggestions on fast input
-                } else if (that !== document.activeElement) setTimeout(function(){ that.focus(); }, 20);
+                }
             };
             addEvent(that, 'blur', that.blurHandler);
 
@@ -185,8 +185,9 @@ var autoComplete = (function(){
             addEvent(that, 'keyup', that.keyupHandler);
 
             that.focusHandler = function(e){
-                that.last_val = '\n';
-                that.keyupHandler(e)
+               that.last_val = '\n';
+               // that.keyupHandler(e)
+               that.timer = setTimeout(function(){ o.source("", suggest) }, o.delay);
             };
             if (!o.minChars) addEvent(that, 'focus', that.focusHandler);
         }
